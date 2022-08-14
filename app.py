@@ -11,13 +11,13 @@ from flet import Column, ElevatedButton, Image, Page, Row, Text, TextField
 
 
 PREVIEW_URL = "https://api.memegen.link/images/preview.jpg"
-CREATE_URL = "https://api.memegen.link/images"
+CREATE_URL = "https://api.memegen.link/images/custom"
 
 DOWNLOADS_PATH = Path.home() / "Downloads"
 
 
 def main(page: Page):
-    page.title = "Memegen.link Flet Client"
+    page.title = "Memegen.link Client"
     page.padding = 50
     page.update()
 
@@ -34,7 +34,7 @@ def main(page: Page):
         response = requests.post(
             CREATE_URL,
             data={
-                "template_id": template.value,
+                "background": template.value,
                 "text": [line_1.value, line_2.value],
                 "extension": "png",
                 "redirect": True,
@@ -42,7 +42,7 @@ def main(page: Page):
             stream=True,
         )
         if response.status_code != 201:
-            log.error(f"API response: {response}")
+            log.error(f"{response.status_code} response from API")
             return
 
         path = DOWNLOADS_PATH / f"{template.value or 'meme'}.png"
@@ -79,4 +79,5 @@ def launch(path: Path):
         subprocess.call(("xdg-open", path))
 
 
-flet.app(target=main)
+if __name__ == "__main__":
+    flet.app(target=main)
