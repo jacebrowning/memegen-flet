@@ -1,13 +1,12 @@
-import os
-import platform
 import shutil
-import subprocess
 from pathlib import Path
 
 import flet
 import log
 import requests
-from flet import Column, ElevatedButton, Image, Page, Row, Text, TextField
+from flet import Column, ElevatedButton, Image, Page, Row, TextField
+
+from startfile import startfile
 
 
 PREVIEW_URL = "https://api.memegen.link/images/preview.jpg"
@@ -49,7 +48,7 @@ def main(page: Page):
         with path.open("wb") as f:
             response.raw.decode_content = True
             shutil.copyfileobj(response.raw, f)
-        launch(path)
+        startfile(path)
 
     template = TextField(label="Template", on_change=update_preview)
     line_1 = TextField(label="Line one", on_change=update_preview)
@@ -67,16 +66,6 @@ def main(page: Page):
         ),
         button,
     )
-
-
-def launch(path: Path):
-    path = str(path)
-    if platform.system() == "Darwin":  # macOS
-        subprocess.call(("open", path))
-    elif platform.system() == "Windows":  # Windows
-        os.startfile(path)
-    else:  # Linux variants
-        subprocess.call(("xdg-open", path))
 
 
 if __name__ == "__main__":
