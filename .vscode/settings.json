@@ -1,0 +1,10 @@
+{
+    "cSpell.words": [
+        "flet",
+        "httpx",
+        "Memegen",
+        "startfile"
+    ],
+    "python.formatting.provider": "black",
+    "editor.formatOnSave": true
+}
