@@ -18,7 +18,9 @@ universal-startfile = "^0.1"
 
 black = {version = "^22.6.0", allow-prereleases = true}
 isort = "^5.10.1"
+
 pyinstaller = "^5.3"
+pillow = "^9.2.0"
 
 [build-system]
 
