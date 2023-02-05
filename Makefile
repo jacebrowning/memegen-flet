@@ -11,6 +11,10 @@ install: .venv/flag
 	poetry install
 	@ touch $@
 
+poetry.lock: pyproject.toml
+	poetry lock --no-update
+	@ touch $@
+
 run: install
 	poetry run python app.py
 
