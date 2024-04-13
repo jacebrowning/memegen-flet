@@ -39,6 +39,7 @@ def main(page: Page):
                 "redirect": True,
             },
             stream=True,
+            timeout=10,
         )
         if response.status_code != 201:
             log.error(f"{response.status_code} response from API")

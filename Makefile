@@ -24,7 +24,7 @@ dist/$(NAME).zip: dist/$(NAME).app
 	cd dist && zip -r $(NAME).zip $(NAME).app
 
 dist/$(NAME).app: app.py Makefile poetry.lock
-	poetry run pyinstaller app.py --name $(NAME) --noconsole --noconfirm --onefile --icon ../memegen/docs/logo.png
+	poetry run pyinstaller app.py --name=$(NAME) --noconsole --noconfirm --onefile --icon=../memegen/docs/logo.png
 	open dist/$(NAME).app
 
 clean:
