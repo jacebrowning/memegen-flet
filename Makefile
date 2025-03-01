@@ -7,12 +7,11 @@ all: install
 install: .venv/flag
 .venv/flag: poetry.lock
 	@ poetry config virtualenvs.in-project true
-	@ poetry env use /usr/local/bin/python3
 	poetry install
 	@ touch $@
 
 poetry.lock: pyproject.toml
-	poetry lock --no-update
+	poetry lock
 	@ touch $@
 
 run: install
@@ -28,7 +27,4 @@ dist/$(NAME).app: app.py Makefile poetry.lock
 	open dist/$(NAME).app
 
 clean:
-	rm -rf build dist
-
-clean-all: clean
-	rm -rf .venv
+	rm -rf .venv build dist

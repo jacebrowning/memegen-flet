@@ -5,7 +5,12 @@
     "cSpell.words": [
         "flet",
         "httpx",
+        "isort",
         "Memegen",
-        "startfile"
+        "noconfirm",
+        "noconsole",
+        "pyinstaller",
+        "startfile",
+        "virtualenvs"
     ],
 }
